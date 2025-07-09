@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrendyStore</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f9f9f9; line-height: 1.6; }
+    header { background: #111; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: #fff; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #f0c040; }
+    #cart { background: #f0c040; padding: 0.5rem 1rem; border-radius: 20px; color: #000; font-weight: bold; }
+
+    section { padding: 2rem; }
+    #hero { background: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff') center/cover no-repeat; color: white; height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; }
+    #hero h1 { background: rgba(0, 0, 0, 0.6); padding: 1rem 2rem; border-radius: 10px; }
+
+    #product-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .product { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+    .product img { max-width: 100%; border-radius: 8px; }
+    .product h2 { font-size: 1.1rem; margin: 0.5rem 0; }
+    .product button { background: #28a745; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+    .product button:hover { background: #218838; }
+
+    #contact { background: #333; color: white; padding: 2rem; text-align: center; }
+    #contact a { color: #f0c040; text-decoration: none; }
+
+    footer { background: #111; color: #ccc; padding: 1rem; text-align: center; font-size: 0.9rem; }
+
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>TrendyStore</strong></div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+      <span id="cart">🛒 Cart: <span id="cart-count">0</span></span>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>Welcome to TrendyStore – Shop the Latest Fashion</h1>
+  </section>
+
+  <section id="products">
+    <h2 style="text-align:center;margin-bottom:1rem;">Our Products</h2>
+    <div id="product-list"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:support@trendystore.com">support@trendystore.com</a></p>
+    <p>Phone: +91-9876543210</p>
+    <p>Follow us on <a href="#">Instagram</a> & <a href="#">Facebook</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 TrendyStore. All rights reserved.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const productList = document.getElementById('product-list');
+      const cartCount = document.getElementById('cart-count');
+      let cart = 0;
+
+      const products = [
+        {
+          name: "Stylish T-Shirt",
+          price: 499,
+          image: "https://images.unsplash.com/photo-1585386959984-a41552262e4f"
+        },
+        {
+          name: "Trendy Jeans",
+          price: 999,
+          image: "https://images.unsplash.com/photo-1618354691460-fddc4d3aa13b"
+        },
+        {
+          name: "Fashion Sneakers",
+          price: 1499,
+          image: "https://images.unsplash.com/photo-1606813905532-90b5cce4703b"
+        },
+        {
+          name: "Classic Watch",
+          price: 1899,
+          image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+        },
+        {
+          name: "Elegant Bag",
+          price: 1299,
+          image: "https://images.unsplash.com/photo-1592878894173-c47f6b3c5a33"
+        }
+      ];
+
+      products.forEach(product => {
+        const div = document.createElement('div');
+        div.classList.add('product');
+        div.innerHTML = `
+          <img src="${product.image}" loading="lazy" alt="${product.name}">
+          <h2>${product.name}</h2>
+          <p>₹${product.price}</p>
+          <button>Add to Cart</button>
+        `;
+        div.querySelector('button').addEventListener('click', () => {
+          cart++;
+          cartCount.textContent = cart;
+        });
+        productList.appendChild(div);
+      });
+    });
+  </script>
+
+</body>
+</html>
